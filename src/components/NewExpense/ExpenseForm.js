@@ -13,23 +13,29 @@ const ExpenseForm = () => {
   });
 
   const titleClickHandler = (event) => {
-    setUserInput({
-        ...enteredUserInput,
-        enteredTitle: event.target.value
+    setUserInput((prevState) => {
+        return {
+            ...prevState,
+            enteredTitle: event.target.value
+        }
     });
   };
 
   const amountClickHandler = (event) => {
-    setUserInput({
-        ...enteredUserInput,
-        enteredAmount: event.target.value
+    setUserInput((prevState) => {
+        return {
+            ...prevState,
+            enteredAmount: event.target.value
+        }
     });
   };
 
   const dateClickHandler = (event) => {
-    setUserInput({
-        ...enteredUserInput,
-        enteredDate: event.target.value
+    setUserInput((prevState) => {
+        return {
+            ...prevState,
+            enteredDate: event.target.value
+        }
     });
   };
 
