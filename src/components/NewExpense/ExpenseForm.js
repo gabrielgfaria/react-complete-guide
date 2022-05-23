@@ -2,54 +2,70 @@ import { useState } from "react";
 
 import "./ExpenseForm.css";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   //   const [enteredTitle, setEnteredTitle] = useState("");
   //   const [enteredAmount, setEnteredAmount] = useState("");
   //   const [enteredDate, setEnteredDate] = useState("");
   const [enteredUserInput, setUserInput] = useState({
-    enteredTitle: "",
-    enteredAmount: "",
-    enteredDate: "",
+    title: "",
+    amount: "",
+    date: "",
   });
 
   const titleClickHandler = (event) => {
     setUserInput((prevState) => {
-        return {
-            ...prevState,
-            enteredTitle: event.target.value
-        }
+      return {
+        ...prevState,
+        title: event.target.value,
+      };
     });
   };
 
   const amountClickHandler = (event) => {
     setUserInput((prevState) => {
-        return {
-            ...prevState,
-            enteredAmount: event.target.value
-        }
+      return {
+        ...prevState,
+        amount: event.target.value,
+      };
     });
   };
 
   const dateClickHandler = (event) => {
     setUserInput((prevState) => {
-        return {
-            ...prevState,
-            enteredDate: event.target.value
-        }
+      return {
+        ...prevState,
+        date: event.target.value,
+      };
+    });
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    props.onSaveExpenseData(enteredUserInput);
+
+    setUserInput({
+        title: "",
+        amount: "",
+        date: "",
     });
   };
 
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" onChange={titleClickHandler} />
+          <input
+            type="text"
+            value={enteredUserInput.title}
+            onChange={titleClickHandler}
+          />
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
           <input
             type="number"
+            value={enteredUserInput.amount}
             min="0.01"
             step="0.01"
             onChange={amountClickHandler}
@@ -59,6 +75,7 @@ const ExpenseForm = () => {
           <label>Date</label>
           <input
             type="date"
+            value={enteredUserInput.date}
             min="2019-01-01"
             max="2022-12-31"
             onChange={dateClickHandler}
