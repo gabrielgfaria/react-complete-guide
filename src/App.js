@@ -7,6 +7,7 @@ const App = () => {
     { id: 2, title: "Cat food", amount: 150.37, date: new Date(2021, 5, 13) },
     { id: 3, title: "Clothes", amount: 2580.4, date: new Date(2021, 3, 18) },
     { id: 4, title: "Library", amount: 5.36, date: new Date(2021, 2, 15) },
+    { id: 4, title: "Library2", amount: 5.36, date: new Date(2021, 2, 15) },
   ];
 
   const addExpenseHandler = (enteredExpenseData) => {
