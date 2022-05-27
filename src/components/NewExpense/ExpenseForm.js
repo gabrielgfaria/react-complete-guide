@@ -3,9 +3,9 @@ import { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
-    const [enteredTitle, setEnteredTitle] = useState('');
-    const [enteredAmount, setEnteredAmount] = useState('');
-    const [enteredDate, setEnteredDate] = useState('');
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredAmount, setEnteredAmount] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");
   // const [enteredUserInput, setUserInput] = useState({
   //   title: '',
   //   amount: '',
@@ -13,7 +13,7 @@ const ExpenseForm = (props) => {
   // });
 
   const titleClickHandler = (event) => {
-    setEnteredTitle(event.target.value)
+    setEnteredTitle(event.target.value);
     // setUserInput((prevState) => {
     //   return {
     //     ...prevState,
@@ -23,7 +23,7 @@ const ExpenseForm = (props) => {
   };
 
   const amountClickHandler = (event) => {
-    setEnteredAmount(event.target.value)
+    setEnteredAmount(event.target.value);
     // setUserInput((prevState) => {
     //   return {
     //     ...prevState,
@@ -33,7 +33,7 @@ const ExpenseForm = (props) => {
   };
 
   const dateClickHandler = (event) => {
-    setEnteredDate(event.target.value)
+    setEnteredDate(event.target.value);
     // setUserInput((prevState) => {
     //   return {
     //     ...prevState,
@@ -47,15 +47,18 @@ const ExpenseForm = (props) => {
 
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
 
     props.onSaveExpenseData(expenseData);
-    setEnteredTitle('');
-    setEnteredAmount('');
-    setEnteredDate('');
-    
+    setEnteredTitle("");
+    setEnteredAmount("");
+    setEnteredDate("");
+  };
+
+  const HandleCancelButton = () => {
+    props.onCancelNewExpense();
   };
 
   return (
@@ -91,6 +94,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={HandleCancelButton}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
